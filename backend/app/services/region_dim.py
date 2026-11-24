@@ -42,10 +42,14 @@ class RegionDimService(BaseModuleService):
         region_center_lat = sum(g["center_lat"] * g["point_count"] for g in grids) / max(total_points, 1)
         region_center_lon = sum(g["center_lon"] * g["point_count"] for g in grids) / max(total_points, 1)
 
+        # 区域名称原样保留（含逗号、双引号、换行等字符），不做任何裁剪或转义，
+        # 工作台展示与区域聚合产物、结果导出读回的文本必须逐字一致。
+        region_name = region.get("区域名称", "未知")
         summary = {
+            "record_category": "region_aggregate",
             "batch_key": batch_key,
             "region_id": region_id,
-            "region_name": region.get("区域名称", "未知"),
+            "region_name": region_name,
             "region_level": region.get("区域级别", "未知"),
             "boundary_code": region.get("边界编码", ""),
             "grid_count": len(grids),

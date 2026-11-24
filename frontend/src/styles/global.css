@@ -25,6 +25,8 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .filter-item span { display: block; font-size: 12px; color: var(--muted); }
 .data-table { width: 100%; border-collapse: collapse; background: #fff; }
 .data-table th, .data-table td { border: 1px solid var(--border); padding: 8px 10px; font-size: 13px; text-align: left; }
+/* 区域名称等文本属性中的换行须原样呈现，与导出表格逐字段读回的内容一致。 */
+.data-table td { white-space: pre-wrap; word-break: break-word; }
 .empty-state { text-align: center; color: var(--muted); }
 .row-actions { display: flex; gap: 6px; }
 .btn { border: 1px solid var(--border); background: #fff; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
